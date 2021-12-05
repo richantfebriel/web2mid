@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+}
+.topnav {
+    overflow: auto;
+    background-color: #db2f34;
+    list-style-type: none;
+    margin-top: 0%;
+    text-align: center;
+    box-shadow: 5px 10px 8px #888888;
+}
+.imgmainsatu {
+    position: absolute;
+    z-index: 1;
+}
+.imgmaindua {
+    position: relative;
+    z-index: 2;
+    top: 50%;
+}
+.img {
+    float: left;
+    width: 10%;
+}
+.topnav a {
+    display: inline;
+    float: left;
+    color: white;
+    padding: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    position: sticky;
+    font-weight: bolder;
+}
+.topnav a:hover {
+    background-color: salmon;
+    border-bottom: 10px,solid,white;
+}
+body {
+    margin: 0%;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+.kolomkirisatu {
+    width: 20%;
+    float: left;
+}
+.kotak {
+    background-color: gainsboro;
+    padding: 4%;
+    border-radius: 10px;
+}
+.imgsatu{
+    padding: 7%;
+    width: 100%;
+}
+.kolomkanansatu {
+    width: 60%;
+    float: left;
+    padding-left: 10%;
+}
+.imgdua{
+    padding: 7%;
+    width: 50%;
+    height: 50%;
+    float: left;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.imgtiga {
+    padding: 5%;
+    width: 33.3%;
+    float: left;
+}
+.galery {
+    float: left;
+    width: 33.33%;
+    padding: 4%;
+    display: inline;
+}
+.foot {
+    padding: 10px;
+    background-color: #b0ffff;
+    text-align: center;
+}
+.foot a {
+    text-decoration: none;
+    color: blue;
+    font-size: x-large;
+}
+.foot a:hover {
+    color: black;
+}
+.footdua {
+    text-align: left;
+    padding: 20px;
+    background-color: #b0ffff;
+    color: blue;
+}
+.bebas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+  
