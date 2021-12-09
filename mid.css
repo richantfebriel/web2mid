@@ -2,25 +2,25 @@
     box-sizing: border-box;
 }
 .topnav {
-    overflow: auto;
-    background-color: #db2f34;
+    background-color: #b00010;
     list-style-type: none;
     margin-top: 0%;
-    text-align: center;
-    box-shadow: 5px 10px 8px #888888;
-}
-.imgmainsatu {
-    position: absolute;
+    box-shadow: 5px 10px 8px #42433d;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0%;
     z-index: 1;
 }
 .imgmaindua {
-    position: relative;
-    z-index: 2;
-    top: 50%;
+    margin-top: -800px;
 }
 .img {
     float: left;
-    width: 10%;
+    width: 12%;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0%;
+    z-index: 1;
 }
 .topnav a {
     display: inline;
@@ -35,6 +35,7 @@
 .topnav a:hover {
     background-color: salmon;
     border-bottom: 10px,solid,white;
+    color: black;
 }
 body {
     margin: 0%;
@@ -81,23 +82,10 @@ body {
     padding: 4%;
     display: inline;
 }
-.foot {
-    padding: 10px;
-    background-color: #b0ffff;
-    text-align: center;
-}
-.foot a {
-    text-decoration: none;
-    color: blue;
-    font-size: x-large;
-}
-.foot a:hover {
-    color: black;
-}
 .footdua {
     text-align: left;
     padding: 20px;
-    background-color: #b0ffff;
+    background-color: #ebffff;
     color: blue;
 }
 .bebas {
@@ -106,5 +94,45 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
-  
+.tulisan {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    text-shadow: 3px 3px #dcdcdc;
+    font-weight: 1000;
+}
+.tulisanjudul {
+    text-align: center; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    text-shadow: 2px 2px #686868;
+    font-weight: 1000;
+}
+.epen {
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-weight: 1000;
+}
+.gambar{
+    max-width: 10%;
+}
+.kaper {
+    transition: .5s ease;
+}
+.tex {
+    color: black;
+    font-size:xx-large;
+}
+.tengah {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.itam:hover .kaper {
+    opacity: 0.3;
+}
+.itam:hover .tengah {
+    opacity: 1;
+}
