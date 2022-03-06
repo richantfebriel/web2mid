@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelanggan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        ul { list-style-type: none; 
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            text-align: center;
+            color: white; }
+
+        li { float: left; }
+
+        li a { display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none; }
+
+        li a:hover:not(.active) { background-color: #e52165; color: white; }
+
+        .a { background-color:  #d9a5b3; color: white;}
+    </style>
+</head>
+<body style="background-color: #c6d7eb;">
+    <nav class="navbar justify-content-center bg-dark">
+        <ul>
+          <li><a class="a" href="index.html">Home</a></li>
+          <li><a href="pelanggan.html">Pelanggan</a></li>
+          <li><a href="penitipan.html">Penitipan</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </nav>
+
+    <div id="app">
+
+        <div class="container">
+            <div class="py-5 text-center">
+              <h2>Tabel Pelanggan</h2>
+              <p class="lead">makasih udah jadi pelanggan</p>
+            </div>
+      
+              <div class="col-md-12">
+                <h4 class="mb-3">Pelanggan <button class="btn btn-md btn-primary" v-on:click="resetForm()">Create New</button></h4>
+                <table class="table table-striped">
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Nama Depan</th>
+                        <th>Nama Belakang</th>
+                        <th>Alamat</th>
+                        <th>Email</th>
+                        <th>No HP</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr v-for="user in users">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.namaDepan }}</td>
+                        <td>{{ user.namaBelakang }}</td>
+                        <td>{{ user.alamat }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.noHp }}</td>
+                        <td><button class="btn btn-md btn-warning" v-on:click="getEdit(user)">Edit</button></td>
+                        <td><button class="btn btn-danger" v-on:click="getDelete(user)">Delete</button></td>
+                    </li>
+                </table>
+
+                <div v-if="message" class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+                
+            
+                <h4 class="mb-3">Pelanggan</h4>
+                <form class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="username">Username</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                          </div>
+                          <input v-model="username" type="text" class="form-control" id="username" placeholder="Username" required>
+                          <div class="invalid-feedback" style="width: 100%;">
+                            Your username is required.
+                          </div>
+                        </div>
+                      </div>
+      
+                  <div class="mb-3">
+                    <label for="namaDepan">Nama Depan</label>
+                    <input v-model="namaDepan" type="text" class="form-control" id="namaDepan" placeholder="">
+                    <div class="invalid-feedback">
+                      nama depan kamu.
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="namaBelakang">Nama Belakang</label>
+                    <input v-model="namaBelakang" type="text" class="form-control" id="namaBelakang" placeholder="">
+                    <div class="invalid-feedback">
+                      nama belakang kamu.
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="alamat">Alamat</label>
+                    <input v-model="alamat" type="text" class="form-control" id="alamat" placeholder="">
+                    <div class="invalid-feedback">
+                      alamat kamu.
+                    </div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input v-model="email" type="email" class="form-control" id="email" placeholder="">
+                    <div class="invalid-feedback">
+                      email kamu.
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="noHp">No HP</label>
+                    <input v-model="noHp" type="text" class="form-control" id="noHp" placeholder="">
+                    <div class="invalid-feedback">
+                      no hp kamu.
+                    </div>
+                  </div>
+
+                </div>
+                
+                <hr class="mb-4">
+                <button v-if="!editMode && !deleteMode" v-on:click="createUser" class="btn btn-primary btn-lg btn-block" type="submit">Submit Data</button>
+                <button v-if="editMode" v-on:click="updateUser" class="btn btn-warning btn-lg btn-block" type="submit">Update Data</button>
+                <button v-if="deleteMode" v-on:click="deleteUser" class="btn btn-danger btn-lg btn-block" type="submit">Delete Data</button>
+                  
+                </form>
+              </div>
+            </div>
+    </div>
+    
+
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        var app = new Vue ({
+            el: '#app',
+            data: {
+                errors: [],
+                message: null,
+                users:[],
+                userIdEdit: null,
+                userIdDelete: null,
+                editMode: false,
+                deleteMode: false,
+                id: '',
+                username: '',
+                namaDepan: '',
+                namaBelakang: '',
+                alamat: '',
+                email: '',
+                noHp: ''
+            },
+            mounted: function() {
+                this.getUser();
+            },
+            methods: {
+                getUser() {
+                    axios.get('https://62242dd93af069a0f9b04ca3.mockapi.io/tblPelanggan')
+                        .then(response => {
+                            this.users = response.data;
+                            console.log(response);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                },
+                createUser: function(){
+                    axios.post('https://62242dd93af069a0f9b04ca3.mockapi.io/tblPelanggan', {
+                        username: this.username,
+                        namaDepan: this.namaDepan,
+                        namaBelakang: this.namaBelakang,
+                        alamat: this.alamat,
+                        email: this.email,
+                        noHp: this.noHp
+                    })
+                    .then(response => {
+                            this.getUser();
+                            this.message = "Your data has been submitted";
+                            console.log(response);
+                    })
+                    .catch(error => {
+                            console.log(error);
+                    });
+                },
+                resetForm: function () {
+                    this.message = null;
+                    this.editMode = false;
+                    this.deleteMode = false;
+                    this.userIdEdit = null;
+                    this.username = null;
+                    this.namaDepan = null;
+                    this.namaBelakang = null;
+                    this.alamat = null;
+                    this.email = null;
+                    this.noHp = null;
+                },
+                getEdit: function (user) {
+                    this.message = null;
+                    this.editMode = true;
+                    this.deleteMode = false;
+                    this.userIdEdit = user.id;
+                    this.username = user.username;
+                    this.namaDepan = user.namaDepan;
+                    this.namaBelakang = user.namaBelakang;
+                    this.alamat = user.alamat;
+                    this.email = user.email;
+                    this.noHp = user.noHp;
+                },
+                getDelete: function (user) {
+                    this.message = null;
+                    this.deleteMode = true;
+                    this.editMode = false;
+                    this.userIdDelete = user.id;
+                    this.username = user.username;
+                    this.namaDepan = user.namaDepan;
+                    this.namaBelakang = user.namaBelakang;
+                    this.alamat = user.alamat;
+                    this.email = user.email;
+                    this.noHp = user.noHp;
+                },
+                updateUser: function () {
+                    axios.put(`https://62242dd93af069a0f9b04ca3.mockapi.io/tblPelanggan/${this.userIdEdit}`, {
+                            username: this.username,
+                            namaDepan: this.namaDepan,
+                            namaBelakang: this.namaBelakang,
+                            alamat: this.alamat,
+                            email: this.email,
+                            noHp: this.noHp
+                        })
+                        .then(res => {
+                            // handle success
+                            this.message = "Your data has been updated";
+                            this.getUser();
+                        })
+                        .catch(err => {
+                            // handle error
+                            console.log(err);
+                        })
+                },
+                // Delete User
+                deleteUser: function () {
+                    axios.delete(`https://62242dd93af069a0f9b04ca3.mockapi.io/tblPelanggan/${this.userIdDelete}`)
+                        .then(res => {
+                            // handle success
+                            this.message = "Your data has been deleted";
+                            this.getUser();
+                        })
+                        .catch(err => {
+                            // handle error
+                            console.log(err);
+                        })
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
