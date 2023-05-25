@@ -1,1 +1,1 @@
-this is a project that Richant made in completing the final exam in web 2 class at college
+this is a project that Richant made in completing the final exam in web 2 class at college, and this web used laravel that input data from website and then will display on the website tho. you can edit, delete, and create data there
