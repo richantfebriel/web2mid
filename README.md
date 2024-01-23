@@ -2,4 +2,6 @@ this is a project that Richant made in completing the mid exam in web 2 class at
 
 ![Screenshot 2023-06-08 102031](https://github.com/richantfebriel/web2/assets/94831343/1a3c6759-8572-41b1-a38e-69638cb905ef)
 
+u can see here : https://richantfebriel.github.io/web2mid/
+
 Sorry for bad appearance hehe im just a student :(
