@@ -60,6 +60,7 @@
         <div class="col-md-12">
           <h4 class="mb-3">Pelanggan</h4>
           <button class="btn btn-md btn-primary mb-3" v-on:click="resetForm()">Create New</button>
+          <div class="table-responsive-lg">
           <table class="table table-striped">
             <tr>
               <th>ID</th>
@@ -84,6 +85,8 @@
               <td><button class="btn btn-danger" v-on:click="getDelete(user)">Delete</button></td>
             </tr>
           </table>
+          </div>
+              
           <div v-if="message" class="alert alert-success" role="alert">
             {{ message }}
           </div>
