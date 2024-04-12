@@ -5,39 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="icon" type="image/x-icon" href="ini.png">
     <style>
-        ul { list-style-type: none; 
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            text-align: center;
-            color: white; }
-
-        li { float: left; }
-
-        li a { display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none; }
-
-        li a:hover:not(.active) { background-color: #e52165; color: white; }
-
-        .a { background-color:  #d9a5b3; color: white;}
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      h2, p, h4, label, hr {
+        color: white;
+      }
     </style>
 </head>
-<body style="background-color: #c6d7eb;">
-    <nav class="navbar justify-content-center bg-dark">
-        <ul>
-          <li><a class="a" href="index.html">Home</a></li>
-          <li><a href="pelanggan.html">Pelanggan</a></li>
-          <li><a href="penitipan.html">Penitipan</a></li>
-          <li><a href="feedback.html">Feedback</a></li>
-        </ul>
-      </nav>
+<body style="background-color: #000000;">
+
+    <nav class="navbar navbar-expand-lg sticky-top bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a href="index.html">
+                <img src="ini.png" alt="Bootstrap" width="30" height="24">
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pelanggan.html">Pelanggan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="penitipan.html">Penitipan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="feedback.html">Feedback</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
 
     <div id="app">
 
@@ -48,7 +59,8 @@
             </div>
       
               <div class="col-md-12">
-                <h4 class="mb-3">Feedback <button class="btn btn-md btn-primary" v-on:click="resetForm()">Create new feedback </button></h4>
+                <h4 class="mb-3">Feedback</h4>
+                <button class="btn btn-md btn-primary mb-3" v-on:click="resetForm()">Create new feedback </button>
                 <table class="table table-striped">
                     <tr>
                         <th>ID</th>
@@ -74,7 +86,8 @@
                     {{ message }}
                 </div>
                 
-            
+                <hr style="margin-bottom: 50px;">
+
                 <h4 class="mb-3">Feedback</h4>
                 <form class="needs-validation" novalidate>
                     <div class="mb-3">
@@ -126,10 +139,11 @@
             </div>
     </div>
     
+    <div class="mb-5"></div>
 
     <!-- Axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         var app = new Vue ({
             el: '#app',
